@@ -8,6 +8,7 @@ import { GitRepoSearchBy, GitService, GitUri } from '../gitService';
 import { Logger } from '../logger';
 import { CommandQuickPickItem, CommitsQuickPick, ShowCommitsSearchInResultsQuickPickItem } from '../quickPicks/quickPicks';
 import { ShowQuickCommitDetailsCommandArgs } from './showQuickCommitDetails';
+import lang from '../i18n';
 
 const searchByRegex = /^([@~=:#])/;
 const searchByMap = new Map<string, GitRepoSearchBy>([
@@ -61,7 +62,7 @@ export class ShowCommitSearchCommand extends ActiveEditorCachedCommand {
             args.search = await window.showInputBox({
                 value: args.search,
                 prompt: `Please enter a search string`,
-                placeHolder: `search by message, author (@<pattern>), files (:<pattern>), commit id (#<sha>), changes (~<pattern>), or changed occurrences (=<string>)`
+                placeHolder: `search by message, ${lang.author} (@<pattern>), files (:<pattern>), commit id (#<sha>), changes (~<pattern>), or changed occurrences (=<string>)`
             } as InputBoxOptions);
             if (args.search === undefined) return args.goBackCommand === undefined ? undefined : args.goBackCommand.execute();
 
@@ -87,7 +88,7 @@ export class ShowCommitSearchCommand extends ActiveEditorCachedCommand {
         let searchLabel: string | undefined = undefined;
         switch (args.searchBy) {
             case GitRepoSearchBy.Author:
-                searchLabel = `commits with an author matching '${args.search}'`;
+                searchLabel = `commits with an ${lang.author} matching '${args.search}'`;
                 break;
 
             case GitRepoSearchBy.Changes:

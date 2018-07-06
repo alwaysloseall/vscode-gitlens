@@ -2,6 +2,7 @@
 import { GitCommitType } from './commit';
 import { GitLogCommit } from './logCommit';
 import { GitStatusFileStatus, IGitStatusFile } from './status';
+import lang from '../../i18n';
 
 export class GitStashCommit extends GitLogCommit {
 
@@ -23,7 +24,7 @@ export class GitStashCommit extends GitLogCommit {
             type,
             repoPath,
             sha,
-            'You',
+            lang.You,
             undefined,
             date,
             message,

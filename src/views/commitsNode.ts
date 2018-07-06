@@ -4,6 +4,7 @@ import { TreeItem, TreeItemCollapsibleState } from 'vscode';
 import { CommitNode } from './commitNode';
 import { Explorer, ExplorerNode, ResourceType, ShowAllNode } from './explorerNode';
 import { GitLog, GitUri } from '../gitService';
+import lang from '../i18n';
 
 export class CommitsNode extends ExplorerNode {
 
@@ -23,7 +24,7 @@ export class CommitsNode extends ExplorerNode {
 
         const children: (CommitNode | ShowAllNode)[] = [...Iterables.map(log.commits.values(), c => new CommitNode(c, this.explorer))];
         if (log.truncated) {
-            children.push(new ShowAllNode('Show All Commits', this, this.explorer));
+            children.push(new ShowAllNode(lang.ShowAllCommits, this, this.explorer));
         }
         return children;
     }

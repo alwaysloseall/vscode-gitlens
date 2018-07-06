@@ -6,6 +6,7 @@ import { ExplorerNode, MessageNode, ResourceType } from './explorerNode';
 import { GitExplorer } from './gitExplorer';
 import { GitUri, Repository } from '../gitService';
 import { RemoteNode } from './remoteNode';
+import lang from '../i18n';
 
 export class RemotesNode extends ExplorerNode {
 
@@ -31,7 +32,7 @@ export class RemotesNode extends ExplorerNode {
         }
 
         getTreeItem(): TreeItem {
-            const item = new TreeItem(`Remotes`, TreeItemCollapsibleState.Collapsed);
+            const item = new TreeItem(lang.Remotes, TreeItemCollapsibleState.Collapsed);
             item.contextValue = ResourceType.Remotes;
 
             item.iconPath = {

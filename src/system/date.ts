@@ -1,6 +1,7 @@
 'use strict';
 import { distanceInWordsToNow as _fromNow, format as _format } from 'date-fns';
 import * as en from 'date-fns/locale/en';
+import lang from '../i18n';
 
 const MillisecondsPerMinute = 60000; // 60 * 1000
 const MillisecondsPerDay = 86400000; // 24 * 60 * 60 * 1000
@@ -9,70 +10,70 @@ const MillisecondsPerDay = 86400000; // 24 * 60 * 60 * 1000
 function buildDistanceInWordsLocale() {
     const distanceInWordsLocale: { [key: string]: string | { one: string, other: string } } = {
         lessThanXSeconds: {
-            one: 'less than a second',
-            other: 'less than {{count}} seconds'
+            one: lang.lessThanASecond,
+            other: `${lang.lessThan} {{count}} ${lang.seconds}`
         },
 
         xSeconds: {
-            one: '1 second',
-            other: '{{count}} seconds'
+            one: lang.oneSecond,
+            other: `{{count}} ${lang.seconds}`
         },
 
-        halfAMinute: 'half a minute',
+        halfAMinute: lang.halfAMinute,
 
         lessThanXMinutes: {
-            one: 'a few seconds',
-            other: 'less than {{count}} minutes'
+            one: lang.aFewSeconds,
+            other: `${lang.lessThan} {{count}} ${lang.minutes}`
         },
 
         xMinutes: {
-            one: 'a minute',
-            other: '{{count}} minutes'
+            one: lang.aMinute,
+            other: `{{count}} ${lang.minutes}`
         },
 
         aboutXHours: {
-            one: 'an hour',
-            other: '{{count}} hours'
+            one: lang.anHour,
+            other: `{{count}} ${lang.hours}`
         },
 
         xHours: {
-            one: 'an hour',
-            other: '{{count}} hours'
+            one: lang.anHour,
+            other: `{{count}} ${lang.hours}`
         },
 
         xDays: {
-            one: 'a day',
-            other: '{{count}} days'
+            one: lang.aDay,
+            other: `{{count}} ${lang.days}`
         },
 
         aboutXMonths: {
-            one: 'a month',
-            other: '{{count}} months'
+            one: lang.aMonth,
+            other: `{{count}} ${lang.months}`
         },
 
         xMonths: {
-            one: 'a month',
-            other: '{{count}} months'
+            one: lang.aMonth,
+            other: `{{count}} ${lang.months}`
         },
 
         aboutXYears: {
-            one: 'a year',
-            other: '{{count}} years'
+            one: lang.aYear,
+            other: `{{count}} ${lang.years}`
         },
 
         xYears: {
-            one: 'a year',
-            other: '{{count}} years'
+            one: lang.aYear,
+            other: `{{count}} ${lang.years}`
         },
 
         overXYears: {
-            one: 'a year',
-            other: '{{count}} years'
+            one: lang.aYear,
+            other: `{{count}} ${lang.years}`
         },
 
         almostXYears: {
-            one: 'a year',
-            other: '{{count}} years'
+            one: lang.aYear,
+            other: `{{count}} ${lang.years}`
         }
     };
 
@@ -103,7 +104,7 @@ function buildDistanceInWordsLocale() {
 
         if (options.comparison > 0) return 'in ' + value;
 
-        return value + ' ago';
+        return value + ` ${lang.ago}`;
     }
 
     return {

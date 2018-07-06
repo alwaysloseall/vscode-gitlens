@@ -5,6 +5,7 @@ import { Container } from '../container';
 import { Explorer, ExplorerNode, MessageNode, ResourceType } from './explorerNode';
 import { GitUri, Repository } from '../gitService';
 import { StashNode } from './stashNode';
+import lang from '../i18n';
 
 export class StashesNode extends ExplorerNode {
 
@@ -23,13 +24,13 @@ export class StashesNode extends ExplorerNode {
 
     async getChildren(): Promise<ExplorerNode[]> {
         const stash = await this.repo.getStashList();
-        if (stash === undefined) return [new MessageNode('No stashed changes')];
+        if (stash === undefined) return [new MessageNode(lang.NoStashedChanges)];
 
         return [...Iterables.map(stash.commits.values(), c => new StashNode(c, this.explorer))];
     }
 
     getTreeItem(): TreeItem {
-        const item = new TreeItem(`Stashes`, TreeItemCollapsibleState.Collapsed);
+        const item = new TreeItem(lang.Stashes, TreeItemCollapsibleState.Collapsed);
         item.contextValue = ResourceType.Stashes;
 
         item.iconPath = {

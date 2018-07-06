@@ -5,6 +5,7 @@ import { CommitNode } from './commitNode';
 import { Container } from '../container';
 import { Explorer, ExplorerNode, ResourceType } from './explorerNode';
 import { GitStatus, GitUri } from '../gitService';
+import lang from '../i18n';
 
 export class StatusUpstreamNode extends ExplorerNode {
 
@@ -46,8 +47,8 @@ export class StatusUpstreamNode extends ExplorerNode {
 
     async getTreeItem(): Promise<TreeItem> {
         const label = this.direction === 'ahead'
-            ? `${this.status.state.ahead} ${this.status.state.ahead === 1 ? 'commit' : 'commits'} (ahead of ${this.status.upstream})`
-            : `${this.status.state.behind} ${this.status.state.behind === 1 ? 'commit' : 'commits'} (behind ${this.status.upstream})`;
+            ? `${this.status.state.ahead} ${this.status.state.ahead === 1 ? lang.commit : lang.commits} (${lang.aheadOf} ${this.status.upstream})`
+            : `${this.status.state.behind} ${this.status.state.behind === 1 ? lang.commit : lang.commits} (${lang.behind} ${this.status.upstream})`;
 
         const item = new TreeItem(label, TreeItemCollapsibleState.Collapsed);
         item.id = this.id;

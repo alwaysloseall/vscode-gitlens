@@ -6,6 +6,7 @@ import { Container } from '../container';
 import { Explorer, ExplorerNode, MessageNode, ResourceType } from './explorerNode';
 import { GitCommitType, GitLogCommit, GitService, GitUri, Repository, RepositoryChange, RepositoryChangeEvent } from '../gitService';
 import { Logger } from '../logger';
+import lang from '../i18n';
 
 export class FileHistoryNode extends ExplorerNode {
 
@@ -46,7 +47,7 @@ export class FileHistoryNode extends ExplorerNode {
                 GitCommitType.File,
                 this.uri.repoPath!,
                 sha,
-                'You',
+                lang.You,
                 undefined,
                 new Date(),
                 '',

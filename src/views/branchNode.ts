@@ -8,6 +8,7 @@ import { Container } from '../container';
 import { ExplorerNode, ExplorerRefNode, MessageNode, ResourceType, ShowAllNode } from './explorerNode';
 import { GitExplorer } from './gitExplorer';
 import { GitBranch, GitUri } from '../gitService';
+import lang from '../i18n';
 
 export class BranchNode extends ExplorerRefNode {
 
@@ -42,7 +43,7 @@ export class BranchNode extends ExplorerRefNode {
 
     async getChildren(): Promise<ExplorerNode[]> {
         const log = await Container.git.getLog(this.uri.repoPath!, { maxCount: this.maxCount, ref: this.branch.name });
-        if (log === undefined) return [new MessageNode('No commits yet')];
+        if (log === undefined) return [new MessageNode(lang.NoCommitsYet)];
 
         const branches = await Container.git.getBranches(this.uri.repoPath);
         // Get the sha length, since `git branch` can return variable length shas
@@ -57,7 +58,7 @@ export class BranchNode extends ExplorerRefNode {
 
         const children: (CommitNode | ShowAllNode)[] = [...Iterables.map(log.commits.values(), c => new CommitNode(c, this.explorer, this.branch, getBranchTips))];
         if (log.truncated) {
-            children.push(new ShowAllNode('Show All Commits', this, this.explorer));
+            children.push(new ShowAllNode(lang.ShowAllCommits, this, this.explorer));
         }
         return children;
     }

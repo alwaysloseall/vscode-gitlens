@@ -8,6 +8,7 @@ import { Container } from '../container';
 import { GitCommitType, GitLogCommit, GitService, GitStatus, GitStatusFile, GitStatusFileStatus, GitUri } from '../gitService';
 import { Keys } from '../keyboard';
 import * as path from 'path';
+import lang from '../i18n';
 
 export class OpenStatusFileCommandQuickPickItem extends OpenFileCommandQuickPickItem {
 
@@ -29,10 +30,10 @@ export class OpenStatusFileCommandQuickPickItem extends OpenFileCommandQuickPick
 
         this.status = status;
         if (status.indexStatus !== undefined) {
-            this.commit = new GitLogCommit(GitCommitType.File, status.repoPath, GitService.stagedUncommittedSha, 'You', undefined, new Date(), '', status.fileName, [status], status.status, status.originalFileName, 'HEAD', status.fileName);
+            this.commit = new GitLogCommit(GitCommitType.File, status.repoPath, GitService.stagedUncommittedSha, lang.You, undefined, new Date(), '', status.fileName, [status], status.status, status.originalFileName, 'HEAD', status.fileName);
         }
         else {
-            this.commit = new GitLogCommit(GitCommitType.File, status.repoPath, GitService.uncommittedSha, 'You', undefined, new Date(), '', status.fileName, [status], status.status, status.originalFileName, realIndexStatus !== undefined ? GitService.stagedUncommittedSha : 'HEAD', status.fileName);
+            this.commit = new GitLogCommit(GitCommitType.File, status.repoPath, GitService.uncommittedSha, lang.You, undefined, new Date(), '', status.fileName, [status], status.status, status.originalFileName, realIndexStatus !== undefined ? GitService.stagedUncommittedSha : 'HEAD', status.fileName);
         }
     }
 

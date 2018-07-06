@@ -2,6 +2,7 @@
 import { Strings } from '../../system';
 import { Git, GitAuthor, GitBlame, GitBlameCommit, GitCommitLine } from './../git';
 import * as path from 'path';
+import lang from '../../i18n';
 
 interface BlameEntry {
     sha: string;
@@ -58,12 +59,12 @@ export class GitBlameParser {
             switch (lineParts[0]) {
                 case 'author':
                     if (Git.isUncommitted(entry.sha)) {
-                        entry.author = 'You';
+                        entry.author = lang.You;
                     }
                     else {
                         entry.author = lineParts.slice(1).join(' ').trim();
                         if (currentUser !== undefined && currentUser === entry.author) {
-                            entry.author = 'You';
+                            entry.author = lang.You;
                         }
                     }
                     break;

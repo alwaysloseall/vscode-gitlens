@@ -9,6 +9,7 @@ import { GitLog, GitLogCommit, GitUri, RemoteResource } from '../gitService';
 import { KeyCommand, KeyNoopCommand } from '../keyboard';
 import { OpenRemotesCommandQuickPickItem } from './remotesQuickPick';
 import * as path from 'path';
+import lang from '../i18n';
 
 export class ApplyCommitFileChangesCommandQuickPickItem extends CommandQuickPickItem {
     constructor(
@@ -16,7 +17,7 @@ export class ApplyCommitFileChangesCommandQuickPickItem extends CommandQuickPick
         item?: QuickPickItem
     ) {
         super(item || {
-            label: `$(git-pull-request) Apply Changes`,
+            label: `$(git-pull-request) ${lang.ApplyChanges}`,
             description: `${Strings.pad(GlyphChars.Dash, 2, 3)} $(file-text) ${path.basename(commit.fileName)} in ${GlyphChars.Space}$(git-commit) ${commit.shortSha}`
         }, undefined, undefined);
     }
@@ -36,7 +37,7 @@ export class OpenCommitFileCommandQuickPickItem extends OpenFileCommandQuickPick
     ) {
         const uri = Uri.file(path.resolve(commit.repoPath, commit.fileName));
         super(uri, item || {
-            label: `$(file-symlink-file) Open File`,
+            label: `$(file-symlink-file) ${lang.OpenFile}`,
             description: `${Strings.pad(GlyphChars.Dash, 2, 3)} ${path.basename(commit.fileName)}`
         });
     }

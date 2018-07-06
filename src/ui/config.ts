@@ -262,6 +262,10 @@ export interface IRemotesUrlsConfig {
 }
 
 export interface IConfig {
+    display: {
+        language: 'zh_CN' | 'en_US'
+    };
+
     blame: {
         avatars: boolean;
         compact: boolean;

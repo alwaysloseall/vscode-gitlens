@@ -8,6 +8,7 @@ import { Container } from '../container';
 import { ExplorerNode, ResourceType } from './explorerNode';
 import { GitExplorer } from './gitExplorer';
 import { GitUri, Repository } from '../gitService';
+import lang from '../i18n';
 
 export class BranchesNode extends ExplorerNode {
 
@@ -56,7 +57,7 @@ export class BranchesNode extends ExplorerNode {
     }
 
     async getTreeItem(): Promise<TreeItem> {
-        const item = new TreeItem(`Branches`, TreeItemCollapsibleState.Collapsed);
+        const item = new TreeItem(lang.Branches, TreeItemCollapsibleState.Collapsed);
 
         const remotes = await this.repo.getRemotes();
         item.contextValue = (remotes !== undefined && remotes.length > 0)

@@ -8,6 +8,7 @@ import { Container } from './container';
 import { DocumentTracker, GitDocumentState } from './trackers/gitDocumentTracker';
 import { GitBlame, GitBlameCommit, GitBlameLines, GitService, GitUri } from './gitService';
 import { Logger } from './logger';
+import lang from './i18n';
 
 export class GitRecentChangeCodeLens extends CodeLens {
 
@@ -333,7 +334,7 @@ export class GitCodeLensProvider implements CodeLensProvider {
         if (blame === undefined) return lens;
 
         const count = blame.authors.size;
-        let title = `${count} ${count > 1 ? 'authors' : 'author'} (${Iterables.first(blame.authors.values()).name}${count > 1 ? ' and others' : ''})`;
+        let title = `${count} ${count > 1 ? lang.authors : lang.author} (${Iterables.first(blame.authors.values()).name}${count > 1 ? lang.andOthers : ''})`;
         if (Container.config.debug) {
             title += ` [${SymbolKind[lens.symbol.kind]}(${lens.range.start.character}-${lens.range.end.character}${lens.symbol.containerName ? `|${lens.symbol.containerName}` : ''}), Lines (${lens.blameRange.start.line + 1}-${lens.blameRange.end.line + 1}), Authors (${Iterables.join(Iterables.map(blame.authors.values(), a => a.name), ', ')})]`;
         }

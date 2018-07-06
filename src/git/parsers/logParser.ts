@@ -4,6 +4,7 @@ import { Range } from 'vscode';
 import { Git, GitAuthor, GitCommitType, GitLog, GitLogCommit, GitStatusFileStatus, IGitStatusFile } from './../git';
 // import { Logger } from '../../logger';
 import * as path from 'path';
+import lang from '../../i18n';
 
 interface LogEntry {
     ref?: string;
@@ -75,12 +76,12 @@ export class GitLogParser {
 
                 case 97: // 'a': // author
                     if (Git.isUncommitted(entry.ref)) {
-                        entry.author = 'You';
+                        entry.author = lang.You;
                     }
                     else {
                         entry.author = line.substring(4);
                         if (currentUser !== undefined && currentUser === entry.author) {
-                            entry.author = 'You';
+                            entry.author = lang.You;
                         }
                     }
                     break;

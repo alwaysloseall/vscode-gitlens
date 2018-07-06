@@ -53,6 +53,14 @@
             "type": "object",
             "title": "GitLens configuration",
             "properties": {
+                "gitlens.display.language": {
+                    "type": "string",
+                    "default": "en_US",
+                    "enum": [
+                        "en_US",
+                        "zh_CN"
+                    ]
+                },
                 "gitlens.blame.avatars": {
                     "type": "boolean",
                     "default": true,

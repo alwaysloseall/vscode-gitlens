@@ -8,6 +8,7 @@ import { ExplorerNode, MessageNode, ResourceType } from './explorerNode';
 import { GitExplorer } from './gitExplorer';
 import { GitUri, Repository } from '../gitService';
 import { TagNode } from './tagNode';
+import lang from '../i18n';
 
 export class TagsNode extends ExplorerNode {
 
@@ -43,7 +44,7 @@ export class TagsNode extends ExplorerNode {
         }
 
         async getTreeItem(): Promise<TreeItem> {
-            const item = new TreeItem(`Tags`, TreeItemCollapsibleState.Collapsed);
+            const item = new TreeItem(lang.Tags, TreeItemCollapsibleState.Collapsed);
             item.contextValue = ResourceType.Tags;
 
             item.iconPath = {

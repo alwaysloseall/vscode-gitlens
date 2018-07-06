@@ -7,6 +7,7 @@ import { ExplorerNode } from './explorerNode';
 import { GitExplorer } from './gitExplorer';
 import { GitUri } from '../gitService';
 import { RepositoryNode } from './repositoryNode';
+import lang from '../i18n';
 
 export class ActiveRepositoryNode extends ExplorerNode {
 
@@ -92,7 +93,7 @@ export class ActiveRepositoryNode extends ExplorerNode {
     getTreeItem(): TreeItem {
         const item = this._repositoryNode !== undefined
             ? this._repositoryNode.getTreeItem()
-            : new TreeItem('No active repository', TreeItemCollapsibleState.None);
+            : new TreeItem(lang.NoActiveRepository, TreeItemCollapsibleState.None);
         item.id = this.id;
         return item;
     }

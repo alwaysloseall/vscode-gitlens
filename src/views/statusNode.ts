@@ -7,6 +7,7 @@ import { GitExplorer } from './gitExplorer';
 import { GitBranch, GitUri, Repository, RepositoryFileSystemChangeEvent } from '../gitService';
 import { StatusFilesNode } from './statusFilesNode';
 import { StatusUpstreamNode } from './statusUpstreamNode';
+import lang from '../i18n';
 
 export class StatusNode extends ExplorerNode {
 
@@ -160,7 +161,7 @@ export class StatusBranchNode extends BranchNode {
 
     async getTreeItem(): Promise<TreeItem> {
         const item = await super.getTreeItem();
-        item.label = `History (${item.label})`;
+        item.label = `${lang.History} (${item.label})`;
         return item;
     }
 }

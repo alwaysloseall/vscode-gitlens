@@ -7,6 +7,7 @@ import { Container } from '../container';
 import { ExplorerNode, ExplorerRefNode, MessageNode, ResourceType, ShowAllNode } from './explorerNode';
 import { GitExplorer } from './gitExplorer';
 import { GitTag, GitUri } from '../gitService';
+import lang from '../i18n';
 
 export class TagNode extends ExplorerRefNode {
 
@@ -32,11 +33,11 @@ export class TagNode extends ExplorerRefNode {
 
     async getChildren(): Promise<ExplorerNode[]> {
         const log = await Container.git.getLog(this.uri.repoPath!, { maxCount: this.maxCount, ref: this.tag.name });
-        if (log === undefined) return [new MessageNode('No commits yet')];
+        if (log === undefined) return [new MessageNode(lang.NoCommitsYet)];
 
         const children: (CommitNode | ShowAllNode)[] = [...Iterables.map(log.commits.values(), c => new CommitNode(c, this.explorer))];
         if (log.truncated) {
-            children.push(new ShowAllNode('Show All Commits', this, this.explorer));
+            children.push(new ShowAllNode(lang.ShowAllCommits, this, this.explorer));
         }
         return children;
     }
